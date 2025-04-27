@@ -41,7 +41,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observer()
-        binding.btnStart.setOnClickListener {
+        binding.btnLogin.setOnClickListener {
             if (validation()) {
                 viewModel.login(
                     email = binding.tvEmail.text.toString(),

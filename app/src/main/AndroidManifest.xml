@@ -3,21 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".DoItApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".DoItApp"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DoIt"
         tools:targetApi="31">
         <activity
+            android:name=".ui.home.HomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustPan"
             android:exported="true"
-            android:theme="@style/Theme.DoIt">
+            android:theme="@style/Theme.DoIt"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

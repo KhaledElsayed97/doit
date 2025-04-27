@@ -55,6 +55,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.extensions)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.fragment)
     implementation(libs.coroutine.core)
     implementation(libs.coroutine.android)
     implementation(platform(libs.firebase.bom))
@@ -67,6 +68,7 @@ dependencies {
     kapt(libs.hilt.compiler)
     implementation(libs.gson)
     implementation(libs.lottie)
+    
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

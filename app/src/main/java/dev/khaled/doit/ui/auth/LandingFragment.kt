@@ -1,5 +1,6 @@
 package dev.khaled.doit.ui.auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import dev.khaled.doit.R
 import dev.khaled.doit.databinding.FragmentLandingBinding
+import dev.khaled.doit.ui.home.HomeActivity
 
 @AndroidEntryPoint
 class LandingFragment : Fragment() {
@@ -27,7 +29,11 @@ class LandingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnLogin.setOnClickListener {
-            findNavController().navigate(R.id.action_landingFragment_to_loginFragment)
+//            findNavController().navigate(R.id.action_landingFragment_to_loginFragment)
+            val intent = Intent(requireContext(), HomeActivity::class.java)
+
+            // Start the SecondActivity
+            startActivity(intent)
         }
         binding.btnRegister.setOnClickListener {
             findNavController().navigate(R.id.action_landingFragment_to_registerFragment)

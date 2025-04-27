@@ -30,8 +30,6 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-//        handleInsets()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
