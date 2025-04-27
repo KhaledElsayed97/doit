@@ -1,26 +1,36 @@
 [versions]
 agp = "8.5.1"
 kotlin = "1.9.0"
-coreKtx = "1.15.0"
+coreKtx = "1.9.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 appcompat = "1.7.0"
 material = "1.12.0"
 constraintlayout = "2.2.0"
-navigationFragmentKtx = "2.8.5"
-navigationUiKtx = "2.8.5"
+navigationFragmentKtx = "2.5.3"
+navigationUiKtx = "2.5.3"
 lifecycleExtension = "2.2.0"
 lifecycleKtx = "2.8.7"
 coroutine = "1.7.3"
-firebaseFirestore = "25.1.1"
-firebaseAuth = "23.1.0"
-daggerVersion = "2.46"
-androidxHilt = "1.0.0"
+daggerVersion = "2.50"
+androidxHilt = "1.2.0"
 gson = "2.10"
+splashScreen="1.0.0"
+lottie = "6.3.0"
+googleServices = "4.4.0"
+hiltVersion = "1.2.0"
+latestRelease = "latest.release"
+firebaseBom = "32.8.1"
+firebaseAuth = "22.3.1"
+firebaseAnalytics = "21.6.2"
+firebaseDatabase="20.3.1"
+firebaseFirestore = "24.11.1"
+googlePlayServices = "20.7.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "splashScreen" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -35,16 +45,21 @@ androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecy
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleKtx" }
 coroutine-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutine" }
 coroutine-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutine" }
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
-firebase-auth = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebaseAuth" }
-dagger-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "daggerVersion" }
-dagger-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "daggerVersion" }
-dagger-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "daggerVersion" }
-dagger-hilt-compiler = { group = "androix.hilt", name = "hilt-compiler", version.ref = "androidxHilt" }
+firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics", version.ref = "firebaseAnalytics" }
+google-play-services = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "googlePlayServices" }
+hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "daggerVersion" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "daggerVersion" }
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+lottie = { group = "com.airbnb.android",name="lottie",version.ref = "lottie"}
 
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+hilt-plugin = {id="com.google.dagger.hilt.android", version.ref = "daggerVersion"}
+google-services-plugin = { id = "com.google.gms.google-services", version.ref = "googleServices" }
 

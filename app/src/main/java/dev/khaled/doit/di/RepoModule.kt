@@ -30,7 +30,7 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun ProvidesTaskRepository(
+    fun provideTaskRepository(
         database: FirebaseFirestore,
         auth: FirebaseAuth,
     ): TaskRepo {
