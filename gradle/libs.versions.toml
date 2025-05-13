@@ -29,6 +29,7 @@ firebaseFirestore = "24.11.1"
 googlePlayServices = "20.7.0"
 activity = "1.10.0"
 fragment = "1.6.2"
+kizitonwoseVersion = "2.0.3"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -59,6 +60,7 @@ hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", v
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 lottie = { group = "com.airbnb.android",name="lottie",version.ref = "lottie"}
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+kizitonwose-calendar = {group="com.kizitonwose.calendar", name ="view", version.ref="kizitonwoseVersion"}
 
 
 [plugins]

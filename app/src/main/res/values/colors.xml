@@ -115,6 +115,9 @@
     <color name="burlyWood">#DEB887</color>
     <color name="plum">#DDA0DD</color>
     <color name="gainsboro">#DCDCDC</color>
+    <color name="pastel_red">#FAA0A0</color>
+    <color name="pastel_orange">#FAC898</color>
+    <color name="pastel_yellow">#FDFD96</color>
     <color name="crimson">#DC143C</color>
     <color name="pale_violet_red">#DB7093</color>
     <color name="goldenrod">#DAA520</color>

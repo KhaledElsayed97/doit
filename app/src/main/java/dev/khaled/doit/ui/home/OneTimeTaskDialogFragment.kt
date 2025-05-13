@@ -1,4 +1,4 @@
-package dev.khaled.doit.ui
+package dev.khaled.doit.ui.home
 
 import android.app.Dialog
 import android.os.Bundle
@@ -7,24 +7,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
-import com.google.android.material.textfield.TextInputEditText
 import dev.khaled.doit.R
 import dev.khaled.doit.data.model.TaskPriority
+import dev.khaled.doit.databinding.DialogOneTimeTaskBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
-class AddTaskDialogFragment : DialogFragment() {
+class OneTimeTaskDialogFragment : DialogFragment() {
 
     private var onTaskAddedListener: OnTaskAddedListener? = null
     private var selectedDate: Long? = null
     private var selectedHour: Int = 0
     private var selectedMinute: Int = 0
     private var selectedPriority: TaskPriority = TaskPriority.MEDIUM
+
+    private lateinit var binding: DialogOneTimeTaskBinding
 
     interface OnTaskAddedListener {
         fun onTaskAdded(title: String, description: String, dueDate: Date?, priority: TaskPriority)
@@ -45,17 +46,19 @@ class AddTaskDialogFragment : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.dialog_add_task, container, false)
+        binding = DialogOneTimeTaskBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val titleInput = view.findViewById<TextInputEditText>(R.id.taskTitleInput)
-        val descriptionInput = view.findViewById<TextInputEditText>(R.id.taskDescriptionInput)
-        val dateInput = view.findViewById<TextInputEditText>(R.id.dateInput)
-        val timeInput = view.findViewById<TextInputEditText>(R.id.timeInput)
-        val priorityInput = view.findViewById<AutoCompleteTextView>(R.id.priorityInput)
+
+        val titleInput = binding.tilTitle
+        val descriptionInput = binding.tilDescription
+        val dateInput = binding.tilDate
+        val timeInput = binding.tilTime
+        val priorityInput = binding.tilPrio
 
         // Setup priority dropdown
         val priorities = TaskPriority.values().map { it.displayName }
@@ -71,7 +74,7 @@ class AddTaskDialogFragment : DialogFragment() {
         }
 
         // Date picker
-        view.findViewById<View>(R.id.dateInput).setOnClickListener {
+        dateInput.setOnClickListener {
             val datePicker = MaterialDatePicker.Builder.datePicker()
                 .setTitleText("Select due date")
                 .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
@@ -87,7 +90,7 @@ class AddTaskDialogFragment : DialogFragment() {
         }
 
         // Time picker
-        view.findViewById<View>(R.id.timeInput).setOnClickListener {
+        timeInput.setOnClickListener {
             val timePicker = MaterialTimePicker.Builder()
                 .setTimeFormat(TimeFormat.CLOCK_24H)
                 .setHour(12)
@@ -105,11 +108,11 @@ class AddTaskDialogFragment : DialogFragment() {
             timePicker.show(parentFragmentManager, "TIME_PICKER")
         }
 
-        view.findViewById<View>(R.id.cancelButton).setOnClickListener {
+        binding.btnCancel.setOnClickListener {
             dismiss()
         }
 
-        view.findViewById<View>(R.id.saveButton).setOnClickListener {
+        binding.btnSave.setOnClickListener {
             val title = titleInput.text.toString()
             val description = descriptionInput.text.toString()
 
@@ -137,6 +140,6 @@ class AddTaskDialogFragment : DialogFragment() {
     }
 
     companion object {
-        const val TAG = "AddTaskDialogFragment"
+        const val TAG = "OneTimeTaskDialogFragment"
     }
 }

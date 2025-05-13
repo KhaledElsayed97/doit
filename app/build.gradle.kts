@@ -68,6 +68,7 @@ dependencies {
     kapt(libs.hilt.compiler)
     implementation(libs.gson)
     implementation(libs.lottie)
+    implementation(libs.kizitonwose.calendar)
     
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

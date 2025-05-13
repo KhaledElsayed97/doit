@@ -30,5 +30,8 @@ class HomeFragment : Fragment() {
         binding.mcvDaily.setOnClickListener{
             findNavController().navigate(R.id.action_HomeFragment_to_DailyTasksFragment)
         }
+        binding.mcvOneTimeTasks.setOnClickListener{
+            findNavController().navigate(R.id.action_HomeFragment_to_OneTimeTasksFragment)
+        }
     }
 }

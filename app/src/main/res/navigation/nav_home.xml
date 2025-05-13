@@ -13,11 +13,27 @@
         <action
             android:id="@+id/action_HomeFragment_to_DailyTasksFragment"
             app:destination="@id/DailyTasksFragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_OneTimeTasksFragment"
+            app:destination="@id/OneTimeTasksFragment" />
     </fragment>
     <fragment
         android:id="@+id/DailyTasksFragment"
         android:name="dev.khaled.doit.ui.home.DailyTasksFragment"
         tools:layout="@layout/fragment_daily_tasks">
 
+        <action
+            android:id="@+id/action_DailyTasksFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/OneTimeTasksFragment"
+        android:name="dev.khaled.doit.ui.home.OneTimeTasksFragment"
+        tools:layout="@layout/fragment_one_time_tasks">
+
+        <action
+            android:id="@+id/action_OneTimeTasksFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
     </fragment>
 </navigation>

@@ -5,43 +5,84 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import dev.khaled.doit.R
 import dev.khaled.doit.data.model.TaskPriority
-import dev.khaled.doit.ui.AddTaskDialogFragment
-import java.util.Date
+import dev.khaled.doit.databinding.FragmentDailyTasksBinding
+import java.util.UUID
 
 @AndroidEntryPoint
-class DailyTasksFragment : Fragment(), AddTaskDialogFragment.OnTaskAddedListener {
+class DailyTasksFragment : Fragment(), DailyTaskDialogFragment.OnTaskAddedListener {
+
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: DailyTaskAdapter
+    private val dailyTaskItems = mutableListOf<DailyTask>()
+    private lateinit var binding: FragmentDailyTasksBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_daily_tasks, container, false)
+    ): View {
+        binding = FragmentDailyTasksBinding.inflate(inflater, container, false)
         
-        view.findViewById<ExtendedFloatingActionButton>(R.id.add_task_button).setOnClickListener {
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        recyclerView = binding.rvTasks
+        recyclerView.layoutManager = LinearLayoutManager(context)
+
+        adapter = DailyTaskAdapter()
+        recyclerView.adapter = adapter
+
+        addTestItems()
+
+        binding.btnAddTask.setOnClickListener{
             showAddTaskDialog()
         }
-        
-        return view
+        binding.ivBack.setOnClickListener {
+            findNavController().navigate(R.id.action_DailyTasksFragment_to_HomeFragment)
+        }
+    }
+
+    private fun addTestItems() {
+        dailyTaskItems.addAll(listOf(
+            DailyTask(
+                id = UUID.randomUUID().toString(),
+                text = "Complete Project Documentation"
+            ),
+            DailyTask(
+                id = UUID.randomUUID().toString(),
+                text = "Complete Project Documentation"
+            )
+        ))
+        adapter.updateTasks(dailyTaskItems)
     }
 
     private fun showAddTaskDialog() {
-        val dialog = AddTaskDialogFragment()
+        val dialog = DailyTaskDialogFragment()
         dialog.setOnTaskAddedListener(this)
-        dialog.show(childFragmentManager, AddTaskDialogFragment.TAG)
+        dialog.show(childFragmentManager, DailyTaskDialogFragment.TAG)
     }
 
     override fun onTaskAdded(
         title: String,
         description: String,
-        dueDate: Date?,
         priority: TaskPriority
     ) {
-        // TODO: Handle the new task (save to database, update UI, etc.)
+        val newItem = DailyTask(
+            id = UUID.randomUUID().toString(),
+            text = title
+        )
+        dailyTaskItems.add(newItem)
+        adapter.updateTasks(dailyTaskItems)
+        
         view?.let {
             Snackbar.make(it, "Task added: $title", Snackbar.LENGTH_SHORT).show()
         }
