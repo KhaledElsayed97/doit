@@ -3,18 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/dialog_background"
     android:orientation="vertical"
-    android:padding="24dp"
-    android:background="@drawable/dialog_background">
+    android:padding="24dp">
 
     <TextView
+        android:id="@+id/tvDialogTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add New Task"
-        android:textSize="20sp"
+        android:layout_marginBottom="16dp"
         android:fontFamily="@font/roboto_extra_bold"
+        android:text="Add New Task"
         android:textColor="@color/md_theme_light_primary"
-        android:layout_marginBottom="16dp"/>
+        android:textSize="20sp" />
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
@@ -28,7 +29,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:maxLines="1"/>
+            android:maxLines="1"
+            android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -44,45 +46,48 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
-            android:minLines="3"/>
+            android:minLines="3"
+            android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:id="@+id/dateInputLayout"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:hint="Due Date"
         android:clickable="true"
-        android:focusable="false">
+        android:focusable="false"
+        android:hint="Due Date">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/til_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusable="false"
             android:inputType="none"
-            android:focusable="false"/>
+            android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:id="@+id/timeInputLayout"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:hint="Due Time"
         android:clickable="true"
-        android:focusable="false">
+        android:focusable="false"
+        android:hint="Due Time">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/til_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusable="false"
             android:inputType="none"
-            android:focusable="false"/>
+            android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -91,38 +96,39 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        app:helperText="Tasks with higher priority appears first in list"
-        android:hint="Priority">
+        android:hint="Priority"
+        app:helperText="Tasks with higher priority appears first in list">
 
         <AutoCompleteTextView
             android:id="@+id/til_prio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="none"
-            android:focusable="false"/>
+            android:focusable="false"
+            android:textColor="@color/black"
+            android:inputType="none" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="end">
+        android:gravity="end"
+        android:orientation="horizontal">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_cancel"
+            style="@style/Widget.Material3.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cancel"
             android:layout_marginEnd="8dp"
-            style="@style/Widget.Material3.Button.TextButton"/>
+            android:text="Cancel" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_save"
+            style="@style/Widget.Material3.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Save"
-            style="@style/Widget.Material3.Button"/>
+            android:text="Save" />
 
     </LinearLayout>
 

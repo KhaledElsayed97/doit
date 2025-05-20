@@ -14,6 +14,7 @@ import com.google.android.material.timepicker.TimeFormat
 import dev.khaled.doit.R
 import dev.khaled.doit.data.model.TaskPriority
 import dev.khaled.doit.databinding.DialogOneTimeTaskBinding
+import dev.khaled.doit.ui.OneTimeTask
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -24,15 +25,21 @@ class OneTimeTaskDialogFragment : DialogFragment() {
     private var selectedHour: Int = 0
     private var selectedMinute: Int = 0
     private var selectedPriority: TaskPriority = TaskPriority.MEDIUM
+    private var existingTask: OneTimeTask? = null
 
     private lateinit var binding: DialogOneTimeTaskBinding
 
     interface OnTaskAddedListener {
         fun onTaskAdded(title: String, description: String, dueDate: Date?, priority: TaskPriority)
+        fun onTaskEdited(task: OneTimeTask, title: String, description: String, dueDate: Date?, priority: TaskPriority)
     }
 
     fun setOnTaskAddedListener(listener: OnTaskAddedListener) {
         onTaskAddedListener = listener
+    }
+
+    fun setExistingTask(task: OneTimeTask) {
+        existingTask = task
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -53,7 +60,6 @@ class OneTimeTaskDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         val titleInput = binding.tilTitle
         val descriptionInput = binding.tilDescription
         val dateInput = binding.tilDate
@@ -68,7 +74,19 @@ class OneTimeTaskDialogFragment : DialogFragment() {
             priorities
         )
         priorityInput.setAdapter(adapter)
-        priorityInput.setText(TaskPriority.MEDIUM.displayName, false)
+
+        // If editing existing task, populate fields
+        existingTask?.let { task ->
+            binding.tvDialogTitle.text = "Edit Task"
+            titleInput.setText(task.title)
+            descriptionInput.setText(task.description)
+            selectedPriority = task.priority
+            priorityInput.setText(task.priority.displayName, false)
+        } ?: run {
+            binding.tvDialogTitle.text = "Add New Task"
+            priorityInput.setText(TaskPriority.MEDIUM.displayName, false)
+        }
+
         priorityInput.setOnItemClickListener { _, _, position, _ ->
             selectedPriority = TaskPriority.values()[position]
         }
@@ -77,7 +95,7 @@ class OneTimeTaskDialogFragment : DialogFragment() {
         dateInput.setOnClickListener {
             val datePicker = MaterialDatePicker.Builder.datePicker()
                 .setTitleText("Select due date")
-                .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                .setSelection(selectedDate ?: MaterialDatePicker.todayInUtcMilliseconds())
                 .build()
 
             datePicker.addOnPositiveButtonClickListener { selection ->
@@ -93,8 +111,8 @@ class OneTimeTaskDialogFragment : DialogFragment() {
         timeInput.setOnClickListener {
             val timePicker = MaterialTimePicker.Builder()
                 .setTimeFormat(TimeFormat.CLOCK_24H)
-                .setHour(12)
-                .setMinute(0)
+                .setHour(selectedHour)
+                .setMinute(selectedMinute)
                 .setTitleText("Select due time")
                 .setInputMode(MaterialTimePicker.INPUT_MODE_CLOCK)
                 .build()
@@ -125,7 +143,11 @@ class OneTimeTaskDialogFragment : DialogFragment() {
                     calendar.time
                 }
                 
-                onTaskAddedListener?.onTaskAdded(title, description, dueDate, selectedPriority)
+                if (existingTask != null) {
+                    onTaskAddedListener?.onTaskEdited(existingTask!!, title, description, dueDate, selectedPriority)
+                } else {
+                    onTaskAddedListener?.onTaskAdded(title, description, dueDate, selectedPriority)
+                }
                 dismiss()
             } else {
                 titleInput.error = "Title is required"

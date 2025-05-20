@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_HomeFragment_to_OneTimeTasksFragment"
             app:destination="@id/OneTimeTasksFragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_ProfileFragment"
+            app:destination="@id/ProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/DailyTasksFragment"
@@ -35,5 +38,17 @@
         <action
             android:id="@+id/action_OneTimeTasksFragment_to_HomeFragment"
             app:destination="@id/HomeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ProfileFragment"
+        android:name="dev.khaled.doit.ui.profile.ProfileFragment"
+        tools:layout="@layout/fragment_profile">
+
+<!--        <action-->
+<!--            android:id="@+id/action_ProfileFragment_to_LoginFragment"-->
+<!--            app:destination="@id/LoginFragment"-->
+<!--            app:popUpTo="@id/HomeFragment"-->
+<!--            app:popUpToInclusive="true" />-->
     </fragment>
 </navigation>

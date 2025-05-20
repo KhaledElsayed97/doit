@@ -33,5 +33,11 @@ class HomeFragment : Fragment() {
         binding.mcvOneTimeTasks.setOnClickListener{
             findNavController().navigate(R.id.action_HomeFragment_to_OneTimeTasksFragment)
         }
+        binding.mcvProfile.setOnClickListener {
+            findNavController().navigate(R.id.action_HomeFragment_to_ProfileFragment)
+        }
+        binding.ivProfile.setOnClickListener {
+            findNavController().navigate(R.id.action_HomeFragment_to_ProfileFragment)
+        }
     }
 }

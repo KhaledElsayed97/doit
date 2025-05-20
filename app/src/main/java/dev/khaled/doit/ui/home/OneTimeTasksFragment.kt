@@ -44,8 +44,7 @@ class OneTimeTasksFragment : Fragment(), OneTimeTaskDialogFragment.OnTaskAddedLi
 
         adapter = OneTimeTaskAdapter(
             onItemClick = { item ->
-                // Handle item click
-                Snackbar.make(view, "Clicked: ${item.title}", Snackbar.LENGTH_SHORT).show()
+                showEditTaskDialog(item)
             },
             onCompleteClick = { item ->
                 // Handle complete click
@@ -57,7 +56,7 @@ class OneTimeTasksFragment : Fragment(), OneTimeTaskDialogFragment.OnTaskAddedLi
             },
             onDeleteClick = { item ->
                 // Handle delete click
-                oneTimeTasks.remove(item)
+                oneTimeTasks.removeAt(oneTimeTasks.indexOf(item))
                 adapter.updateTasks(oneTimeTasks)
             },
             onPostponeClick = { item ->
@@ -81,7 +80,7 @@ class OneTimeTasksFragment : Fragment(), OneTimeTaskDialogFragment.OnTaskAddedLi
         oneTimeTasks.addAll(listOf(
             OneTimeTask(
                 id = UUID.randomUUID().toString(),
-                title = "Complete Project Documentation",
+                title = "Complete Project",
                 description = "Description",
                 priority = TaskPriority.LOW
             ),
@@ -98,6 +97,13 @@ class OneTimeTasksFragment : Fragment(), OneTimeTaskDialogFragment.OnTaskAddedLi
     private fun showAddTaskDialog() {
         val dialog = OneTimeTaskDialogFragment()
         dialog.setOnTaskAddedListener(this)
+        dialog.show(childFragmentManager, OneTimeTaskDialogFragment.TAG)
+    }
+
+    private fun showEditTaskDialog(task: OneTimeTask) {
+        val dialog = OneTimeTaskDialogFragment()
+        dialog.setOnTaskAddedListener(this)
+        dialog.setExistingTask(task)
         dialog.show(childFragmentManager, OneTimeTaskDialogFragment.TAG)
     }
 
@@ -118,6 +124,43 @@ class OneTimeTasksFragment : Fragment(), OneTimeTaskDialogFragment.OnTaskAddedLi
 
         view?.let {
             Snackbar.make(it, "Task added: $title", Snackbar.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun onTaskEdited(
+        task: OneTimeTask,
+        title: String,
+        description: String,
+        dueDate: Date?,
+        priority: TaskPriority
+    ) {
+        val index = oneTimeTasks.indexOfFirst { it.id == task.id }
+        if (index != -1) {
+            oneTimeTasks[index] = OneTimeTask(
+                id = task.id,
+                title = title,
+                description = description,
+                priority = priority,
+                isCompleted = task.isCompleted
+            )
+            adapter.updateTasks(oneTimeTasks)
+
+            view?.let {
+                Snackbar.make(it, "Task updated: $title", Snackbar.LENGTH_SHORT).show()
+            }
+        } else {
+            oneTimeTasks.add(OneTimeTask(
+                id = task.id,
+                title = title,
+                description = description,
+                priority = priority,
+                isCompleted = task.isCompleted
+            ))
+            adapter.updateTasks(oneTimeTasks)
+
+            view?.let {
+                Snackbar.make(it, "Task added: $title", Snackbar.LENGTH_SHORT).show()
+            }
         }
     }
 }

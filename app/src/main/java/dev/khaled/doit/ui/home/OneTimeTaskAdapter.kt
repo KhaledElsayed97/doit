@@ -48,16 +48,18 @@ class OneTimeTaskAdapter(
                 tvDescription.text = item.description
 
                 // Set priority color based on the item's priority
-                val priorityColor = when (item.priority) {
-                    TaskPriority.LOW -> R.color.pastel_yellow
-                    TaskPriority.MEDIUM -> R.color.pastel_orange
-                    TaskPriority.HIGH -> R.color.pastel_red
+                val priority = when (item.priority) {
+                    TaskPriority.LOW -> R.drawable.ic_prio_low
+                    TaskPriority.MEDIUM -> R.drawable.ic_prio_mid
+                    TaskPriority.HIGH -> R.drawable.ic_prio_high
                 }
 
 //                if(item.isCompleted)
 //                    llTodoItem.setBackgroundColor(ContextCompat.getColor(itemView.context,R.color.md_theme_dark_tertiary))
 //                else
 //                    llTodoItem.setBackgroundColor(ContextCompat.getColor(itemView.context,priorityColor))
+
+                ivPrio.setImageDrawable(ContextCompat.getDrawable(itemView.context,priority))
 
                 // Set up options menu
                 btnOptions.setOnClickListener {
@@ -72,7 +74,7 @@ class OneTimeTaskAdapter(
         }
 
         private fun showOptionsMenu(item: OneTimeTask) {
-            val popup = PopupMenu(itemView.context, binding.btnOptions)
+            val popup = PopupMenu(itemView.context, itemView.findViewById(R.id.btnOptions))
             popup.inflate(R.menu.todo_item_menu)
             
             popup.setOnMenuItemClickListener { menuItem ->
