@@ -29,7 +29,7 @@ firebaseFirestore = "24.11.1"
 googlePlayServices = "20.7.0"
 activity = "1.10.0"
 fragment = "1.6.2"
-kizitonwoseVersion = "2.0.3"
+kizitonwoseVersion = "2.4.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }

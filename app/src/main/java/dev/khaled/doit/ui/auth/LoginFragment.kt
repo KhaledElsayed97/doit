@@ -12,6 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import dev.khaled.doit.MainActivity
 import dev.khaled.doit.R
 import dev.khaled.doit.databinding.FragmentLoginBinding
+import dev.khaled.doit.ui.home.HomeActivity
 import dev.khaled.doit.util.UiState
 import dev.khaled.doit.util.hide
 import dev.khaled.doit.util.isValidEmail
@@ -41,6 +42,11 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observer()
+        binding.tvSignUp.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.container, RegisterFragment())
+                ?.commit();
+        }
         binding.btnLogin.setOnClickListener {
             if (validation()) {
                 viewModel.login(

@@ -29,11 +29,7 @@ class LandingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnLogin.setOnClickListener {
-//            findNavController().navigate(R.id.action_landingFragment_to_loginFragment)
-            val intent = Intent(requireContext(), HomeActivity::class.java)
-
-            // Start the SecondActivity
-            startActivity(intent)
+            findNavController().navigate(R.id.action_landingFragment_to_loginFragment)
         }
         binding.btnRegister.setOnClickListener {
             findNavController().navigate(R.id.action_landingFragment_to_registerFragment)

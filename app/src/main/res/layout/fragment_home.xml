@@ -17,13 +17,23 @@
         android:paddingTop="16dp"
         tools:context=".ui.home.HomeFragment">
 
-        <ImageView
-            android:id="@+id/iv_calendar"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_calendar"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
-            android:src="@drawable/ic_calendar"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            android:padding="0dp"
+            app:iconSize="36dp"
+            app:icon="@drawable/ic_calendar"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            android:backgroundTint="@color/white"
+            app:iconTint="@color/md_theme_light_primary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,10 +41,10 @@
             android:layout_width="0dp"
             android:layout_height="70dp"
             android:src="@drawable/ic_logo_vio"
-            app:layout_constraintBottom_toBottomOf="@id/iv_calendar"
+            app:layout_constraintBottom_toBottomOf="@id/iv_profile"
             app:layout_constraintEnd_toStartOf="@id/iv_profile"
-            app:layout_constraintStart_toEndOf="@id/iv_calendar"
-            app:layout_constraintTop_toTopOf="@id/iv_calendar" />
+            app:layout_constraintStart_toEndOf="@id/btn_calendar"
+            app:layout_constraintTop_toTopOf="@id/btn_calendar" />
 
         <ImageView
             android:id="@+id/iv_profile"
@@ -47,17 +57,17 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_user"
+            android:id="@+id/tv_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginHorizontal="24dp"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/roboto_bold"
-            android:gravity="left"
-            android:text="Hi user, \nthis is your to do list for today"
+            android:text="@string/home_date"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_calendar" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_calendar" />
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/search_layout"
@@ -66,7 +76,7 @@
             android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_user">
+            app:layout_constraintTop_toBottomOf="@+id/tv_date">
 
             <com.google.android.material.search.SearchBar
                 android:id="@+id/search_bar"
@@ -104,12 +114,12 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/card_description2"
+                    android:id="@+id/tv_one_time"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_regular"
                     android:paddingTop="4dp"
-                    android:text="Your one time tasks for today"
+                    android:text="@string/home_one_time_date"
                     android:textColor="@color/light_grey"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -121,7 +131,7 @@
                     android:layout_height="130dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/card_description2"
+                    app:layout_constraintTop_toBottomOf="@id/tv_one_time"
                     app:lottie_autoPlay="true"
                     app:lottie_loop="true"
                     app:lottie_rawRes="@raw/anim_checklist" />

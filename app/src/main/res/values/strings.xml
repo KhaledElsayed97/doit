@@ -12,4 +12,6 @@
     <string name="enter_password">Please enter your password</string>
     <string name="invalid_password">Invalid password</string>
     <string name="invalid_login">Invalid login</string>
+    <string name="home_date">Hi user, \nthis is your to do list for %1$s</string>
+    <string name="home_one_time_date">Your one time tasks for %1$s</string>
 </resources>
