@@ -55,7 +55,7 @@ class HomeFragment : Fragment() {
     private fun observeSelectedDate() {
         viewModel.selectedDate.observe(viewLifecycleOwner) { date ->
             if(date == LocalDate.now()){
-                binding.tvDate.text = getString(R.string.home_date, "today")
+                binding.tvDate.text = getString(R.string.home_date,viewModel.currentUser.value?.name, "today")
                 binding.tvOneTime.text = getString(R.string.home_one_time_date,"today")
             }
             else{

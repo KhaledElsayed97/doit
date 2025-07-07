@@ -55,4 +55,8 @@ class AuthViewModel @Inject constructor(
     fun getSession(result: (User?) -> Unit){
         repository.getSession(result)
     }
+
+    fun checkUserExists(id: String, result: (Boolean) -> Unit) {
+        repository.checkUserExists(id, result)
+    }
 }

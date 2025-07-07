@@ -11,4 +11,5 @@ interface AuthRepo {
     fun storeSession(id: String, result: (User?) -> Unit)
     fun getSession(result: (User?) -> Unit)
     fun updateUserInfo(user: User, result: (UiState<String>) -> Unit)
+    fun checkUserExists(id: String, result: (Boolean) -> Unit)
 }

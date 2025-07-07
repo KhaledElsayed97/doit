@@ -75,8 +75,7 @@ class LoginFragment : Fragment() {
                 is UiState.Success -> {
                     binding.loader.hide()
                     snackbar(state.data)
-                    (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
-                    startActivity(Intent(activity, MainActivity::class.java))
+                    startActivity(Intent(activity, HomeActivity::class.java))
                 }
             }
         }
