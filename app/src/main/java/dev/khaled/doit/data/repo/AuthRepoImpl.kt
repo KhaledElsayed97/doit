@@ -305,4 +305,15 @@ class AuthRepoImpl @Inject constructor(
                 result.invoke(false)
             }
     }
+
+    override fun isUserLoggedIn(result: (Boolean) -> Unit) {
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            android.util.Log.d("AuthRepoImpl", "Firebase Auth user found: ${currentUser.email}")
+            result.invoke(true)
+        } else {
+            android.util.Log.d("AuthRepoImpl", "No Firebase Auth user found")
+            result.invoke(false)
+        }
+    }
 }

@@ -60,7 +60,7 @@ class HomeFragment : Fragment() {
             }
             else{
                 val formattedDate = date.format(DateTimeFormatter.ofPattern("MMMM d, yyyy"))
-                binding.tvDate.text = getString(R.string.home_date, formattedDate.toString())
+                binding.tvDate.text = getString(R.string.home_date,viewModel.currentUser.value?.name, formattedDate.toString())
                 binding.tvOneTime.text = getString(R.string.home_one_time_date,formattedDate.toString())
             }
 

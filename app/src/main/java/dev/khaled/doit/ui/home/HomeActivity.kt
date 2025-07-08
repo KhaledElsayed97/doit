@@ -41,6 +41,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setupNavigation()
         setupDrawer()
         updateNavigationHeader()
+        checkAndRestoreSession()
     }
 
     private fun setupNavigation() {
@@ -162,5 +163,28 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     fun openDrawer() {
         binding.drawerLayout.openDrawer(GravityCompat.START)
+    }
+
+    private fun checkAndRestoreSession() {
+        // Check if user has Firebase Auth but no local session
+        authRepo.isUserLoggedIn { isLoggedIn ->
+            if (isLoggedIn) {
+                authRepo.getSession { user ->
+                    if (user == null) {
+                        // User has Firebase Auth but no local session, restore it
+                        val currentUser = com.google.firebase.auth.FirebaseAuth.getInstance().currentUser
+                        if (currentUser != null) {
+                            android.util.Log.d("HomeActivity", "Restoring session for user: ${currentUser.uid}")
+                            authRepo.storeSession(currentUser.uid) { restoredUser ->
+                                if (restoredUser != null) {
+                                    android.util.Log.d("HomeActivity", "Session restored successfully")
+                                    updateNavigationHeader()
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
