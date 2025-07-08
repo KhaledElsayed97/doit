@@ -16,4 +16,10 @@
         <item name="strokeWidth">2dp</item>
         <item name="strokeColor">@color/white</item>
     </style>
+
+    <style name="NavigationDrawerTextStyle" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/md_theme_light_primary</item>
+        <item name="fontFamily">@font/roboto_medium</item>
+    </style>
 </resources>

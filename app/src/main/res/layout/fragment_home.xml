@@ -21,8 +21,8 @@
             android:id="@+id/btn_calendar"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
             android:insetLeft="0dp"
             android:insetTop="0dp"
             android:insetRight="0dp"
@@ -34,27 +34,28 @@
             app:iconPadding="0dp"
             android:backgroundTint="@color/white"
             app:iconTint="@color/md_theme_light_primary"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:layout_width="0dp"
             android:layout_height="70dp"
             android:src="@drawable/ic_logo_vio"
-            app:layout_constraintBottom_toBottomOf="@id/iv_profile"
-            app:layout_constraintEnd_toStartOf="@id/iv_profile"
-            app:layout_constraintStart_toEndOf="@id/btn_calendar"
-            app:layout_constraintTop_toTopOf="@id/btn_calendar" />
+            app:layout_constraintBottom_toBottomOf="@id/btn_calendar"
+            app:layout_constraintEnd_toStartOf="@id/btn_calendar"
+            app:layout_constraintStart_toEndOf="@id/iv_profile"
+            app:layout_constraintTop_toTopOf="@id/iv_profile" />
 
         <ImageView
             android:id="@+id/iv_profile"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
             android:src="@drawable/ic_profile"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
         <TextView
             android:id="@+id/tv_date"

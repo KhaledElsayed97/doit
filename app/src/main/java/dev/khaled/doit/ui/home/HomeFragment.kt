@@ -44,7 +44,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.ivProfile.setOnClickListener {
-            findNavController().navigate(R.id.action_HomeFragment_to_ProfileFragment)
+            (activity as? HomeActivity)?.openDrawer()
         }
 
         binding.btnCalendar.setOnClickListener {

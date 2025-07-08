@@ -16,9 +16,7 @@
         <action
             android:id="@+id/action_HomeFragment_to_OneTimeTasksFragment"
             app:destination="@id/OneTimeTasksFragment" />
-        <action
-            android:id="@+id/action_HomeFragment_to_ProfileFragment"
-            app:destination="@id/ProfileFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/DailyTasksFragment"
